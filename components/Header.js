@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-function Header() {
+export default function Header() {
   return (
     <Head>
         <title>Mean Calculator</title>
@@ -9,5 +9,3 @@ function Header() {
     </Head>
   )
 }
-
-export default Header;
