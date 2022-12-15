@@ -13,9 +13,7 @@ export default function Home() {
   const [standardDeviation, setStandardDeviation] = useState(0);
   const [median, setMedian] = useState(0);
   const [mode, setMode] = useState(0);
-  const [numbers, setNumbers] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-  ]);
+  const [numbers, setNumbers] = useState([]);
 
   async function getNumbers() {
     const numberArray = [];
@@ -61,17 +59,25 @@ export default function Home() {
           id="numbers_input"
           type="text"
           placeholder="Enter numbers separated by commas" />
-        <button className={button_styles.glow_on_hover} onClick={calculate}>Calculate</button>
         <div className={styles.results}>
-          <p>Mean</p>
-          <p>{mean}</p>
-          <p>Standard Deviation</p>
-          <p>{standardDeviation}</p>
-          <p>Median</p>
-          <p>{median}</p>
-          <p>Mode</p>
-          <p>{mode}</p>
+          <div className={styles.card}>
+            <p>Mean</p>
+            <p>{mean}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Standard Deviation</p>
+            <p>{standardDeviation}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Median</p>
+            <p>{median}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Mode</p>
+            <p>{mode}</p>
+          </div>
         </div>
+        <button className={button_styles.glow_on_hover} onClick={calculate}>Calculate</button>
       </main>
       <Footer />
     </div>

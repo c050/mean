@@ -1,0 +1,16 @@
+.footer
+{
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid #eaeaea;
+    gap: 20px;
+
+}
