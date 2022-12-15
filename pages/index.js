@@ -13,10 +13,23 @@ export default function Home() {
   const [standardDeviation, setStandardDeviation] = useState(0);
   const [median, setMedian] = useState(0);
   const [mode, setMode] = useState(0);
+  const [numbers, setNumbers] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  ]);
+
+  async function getNumbers() {
+    const numberArray = [];
+    const numbers = document.getElementById('numbers_input').value;
+    numbers.split(',').map((number) => {
+      numberArray.push(parseInt(number));
+    });
+    console.log(numberArray)
+    calculator.array = numberArray;
+  }
   
   const calculate = (e) => {
     e.preventDefault();
-    calculator.array = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    getNumbers();
     calculator.mean = 0;
     calculator.standardDeviation = 0;
     calculator.median = 0;
@@ -43,7 +56,11 @@ export default function Home() {
         <h1 className={styles.title}>
           Mean Calculator
         </h1>
-        <input className={styles.numbers_input} type="text" placeholder="Enter numbers separated by commas" />
+        <input
+          className={styles.numbers_input}
+          id="numbers_input"
+          type="text"
+          placeholder="Enter numbers separated by commas" />
         <button className={button_styles.glow_on_hover} onClick={calculate}>Calculate</button>
         <div className={styles.results}>
           <p>Mean</p>
