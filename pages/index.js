@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 import button_styles from '../styles/Buttons.module.css'
 import { useState } from 'react'
 import { Calculator } from '../components/Calculator'
-import { calculateOverrideValues } from 'next/dist/server/font-utils'
 
 export default function Home() {
 
