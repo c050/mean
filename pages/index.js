@@ -6,9 +6,7 @@ import { useState } from 'react'
 import { Calculator } from '../components/Calculator'
 
 export default function Home() {
-
   let calculator = new Calculator();
-
   const [mean, setMean] = useState(0);
   const [variance, setVariance] = useState(0);
   const [standardDeviation, setStandardDeviation] = useState(0);
@@ -19,8 +17,7 @@ export default function Home() {
   const [smallestValue, setSmallestValue] = useState(0);
   const [sum, setSum] = useState(0);
   const [range, setRange] = useState(0);
-
-
+  const [numbers, setNumbers] = useState([]);
   async function getNumbers() {
     const numberArray = [];
     const numbers = document.getElementById('numbers_input').value;
@@ -29,8 +26,7 @@ export default function Home() {
     });
     console.log(numberArray)
     calculator.array = numberArray;
-  }
-  
+  };
   const calculate = (e) => {
     e.preventDefault();
     getNumbers();
@@ -44,9 +40,7 @@ export default function Home() {
     calculator.largestValue = 0;
     calculator.smallestValue = 0;
     calculator.sum = 0;
-
     calculator.calculateValues();
-
     setMean(calculator.mean);
     setStandardDeviation(calculator.standardDeviation);
     setMedian(calculator.median);
@@ -57,9 +51,8 @@ export default function Home() {
     setSum(calculator.sum)
     setRange(calculator.range);
     setVariance(calculator.variance);
-
-  }
-
+    setNumbers(calculator.array);
+  };
   return (
     <div className={styles.container}>
       <Header/>
@@ -118,5 +111,4 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
-}
+  )};

@@ -14,7 +14,6 @@ export class Calculator {
         this.smallestValue = 0;
         this.sum = 0;
     };
-
     calculateValues() {
         this.calculateMean();
         this.calculateVariance();
@@ -26,28 +25,23 @@ export class Calculator {
         this.calculateLargestValue();
         this.calculateSmallestValue();
         this.calculateSum();
+        // this.array.sort((a, b) => a - b);
     };
-
     calculateMean() {
         this.mean = ss.mean(this.array);
     };
-
     calculateVariance() {
         this.variance = ss.variance(this.array);
     };
-
     calculateStandardDeviation() {
         this.standardDeviation = ss.standardDeviation(this.array);
     };
-
     calculateGeometricMean() {
         this.geometricMean = ss.geometricMean(this.array);
     };
-
     calculateMedian() {
         this.median = ss.median(this.array);
     };
-    
     calculateMode() {
         this.mode = ss.mode(this.array);
     }
