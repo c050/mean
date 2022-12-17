@@ -1,42 +1,53 @@
+var ss = require('simple-statistics');
+
 export class Calculator {
     constructor() {
         this.array = [];
         this.mean = 0;
+        this.variance = 0;
         this.standardDeviation = 0;
+        this.geometricMean = 0;
         this.median = 0;
         this.mode = 0;
+        this.range = 0;
+        this.largestValue = 0;
+        this.smallestValue = 0;
+        this.sum = 0;
     };
 
     calculateMean() {
-        this.mean = this.array.reduce((a, b) => a + b) / this.array.length;
+        this.mean = ss.mean(this.array);
+    };
+
+    calculateVariance() {
+        this.variance = ss.variance(this.array);
     };
 
     calculateStandardDeviation() {
-        this.standardDeviation = Math.sqrt(this.array.reduce((a, b) => a + b) / this.array.length);
+        this.standardDeviation = ss.standardDeviation(this.array);
+    };
+
+    calculateGeometricMean() {
+        this.geometricMean = ss.geometricMean(this.array);
     };
 
     calculateMedian() {
-        this.median = this.array.sort((a, b) => a - b)[Math.floor(this.array.length / 2)];
+        this.median = ss.median(this.array);
     };
     
     calculateMode() {
-        const modeMap = {};
-        let maxCount = 0;
-        let mode = 0;
-    
-        this.array.forEach((value) => {
-        if (!modeMap[value]) {
-            modeMap[value] = 1;
-        } else {
-            modeMap[value]++;
-        }
-    
-        if (modeMap[value] > maxCount) {
-            maxCount = modeMap[value];
-            mode = value;
-        }
-        });
-    
-        this.mode = mode;
+        this.mode = ss.mode(this.array);
+    }
+    calculateRange() {
+        {}
+    }
+    calculateLargestValue() {
+        this.largestValue = ss.max(this.array);
+    }
+    calculateSmallestValue() {
+        this.smallestValue = ss.min(this.array);
+    }
+    calculateSum() {
+        this.sum = ss.sum(this.array);
     }
 };
