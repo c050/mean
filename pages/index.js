@@ -6,15 +6,18 @@ import { useState } from 'react'
 import { Calculator } from '../components/Calculator'
 
 export default function Home() {
-
   let calculator = new Calculator();
-
   const [mean, setMean] = useState(0);
+  const [variance, setVariance] = useState(0);
   const [standardDeviation, setStandardDeviation] = useState(0);
+  const [geometricMean, setGeometricMean] = useState(0);
   const [median, setMedian] = useState(0);
   const [mode, setMode] = useState(0);
+  const [largestValue, setLargestValue] = useState(0);
+  const [smallestValue, setSmallestValue] = useState(0);
+  const [sum, setSum] = useState(0);
+  const [range, setRange] = useState(0);
   const [numbers, setNumbers] = useState([]);
-
   async function getNumbers() {
     const numberArray = [];
     const numbers = document.getElementById('numbers_input').value;
@@ -23,30 +26,33 @@ export default function Home() {
     });
     console.log(numberArray)
     calculator.array = numberArray;
-  }
-  
+  };
   const calculate = (e) => {
     e.preventDefault();
     getNumbers();
     calculator.mean = 0;
+    calculator.variance = 0;
     calculator.standardDeviation = 0;
+    calculator.geometricMean = 0;
     calculator.median = 0;
     calculator.mode = 0;
-
-    calculator.calculateMean();
+    calculator.range = 0;
+    calculator.largestValue = 0;
+    calculator.smallestValue = 0;
+    calculator.sum = 0;
+    calculator.calculateValues();
     setMean(calculator.mean);
-
-    calculator.calculateStandardDeviation();
     setStandardDeviation(calculator.standardDeviation);
-
-    calculator.calculateMedian();
     setMedian(calculator.median);
-
-    calculator.calculateMode();
     setMode(calculator.mode);
-
-  }
-
+    setGeometricMean(calculator.geometricMean);
+    setLargestValue(calculator.largestValue);
+    setSmallestValue(calculator.smallestValue);
+    setSum(calculator.sum)
+    setRange(calculator.range);
+    setVariance(calculator.variance);
+    setNumbers(calculator.array);
+  };
   return (
     <div className={styles.container}>
       <Header/>
@@ -65,8 +71,32 @@ export default function Home() {
             <p>{mean}</p>
           </div>
           <div className={styles.card}>
+            <p>Variance</p>
+            <p>{variance}</p>
+          </div>
+          <div className={styles.card}>
             <p>Standard Deviation</p>
             <p>{standardDeviation}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Geometric Mean</p>
+            <p>{geometricMean}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Sum</p>
+            <p>{sum}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Range</p>
+            <p>{range}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Largest Value</p>
+            <p>{largestValue}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Smallest Value</p>
+            <p>{smallestValue}</p>
           </div>
           <div className={styles.card}>
             <p>Median</p>
@@ -81,5 +111,4 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
-}
+  )};
