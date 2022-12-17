@@ -15,6 +15,19 @@ export class Calculator {
         this.sum = 0;
     };
 
+    calculateValues() {
+        this.calculateMean();
+        this.calculateVariance();
+        this.calculateStandardDeviation();
+        this.calculateGeometricMean();
+        this.calculateMedian();
+        this.calculateMode();
+        this.calculateRange();
+        this.calculateLargestValue();
+        this.calculateSmallestValue();
+        this.calculateSum();
+    };
+
     calculateMean() {
         this.mean = ss.mean(this.array);
     };
