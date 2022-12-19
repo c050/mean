@@ -5,7 +5,9 @@ export class Calculator {
         this.array = [];
         this.mean = 0;
         this.variance = 0;
+        this.sampleVariance = 0;
         this.standardDeviation = 0;
+        this.sampleStandardDeviation = 0;
         this.geometricMean = 0;
         this.median = 0;
         this.mode = 0;
@@ -13,6 +15,7 @@ export class Calculator {
         this.largestValue = 0;
         this.smallestValue = 0;
         this.sum = 0;
+        this.max_decimals = 12;
     };
     calculateValues() {
         // Delete all NaN values from array
@@ -25,7 +28,9 @@ export class Calculator {
         else {
             this.calculateMean();
             this.calculateVariance();
+            this.calculateSampleVariance();
             this.calculateStandardDeviation();
+            this.calculateSampleStandardDeviation();
             this.calculateGeometricMean();
             this.calculateMedian();
             this.calculateMode();
@@ -36,16 +41,29 @@ export class Calculator {
         }
     };
     calculateMean() {
-        this.mean = ss.mean(this.array);
+        this.mean = parseFloat(ss.mean(this.array).toFixed(this.max_decimals));
     };
     calculateVariance() {
-        this.variance = ss.variance(this.array);
+        this.variance = parseFloat(ss.variance(this.array).toFixed(this.max_decimals));
+    };
+    calculateSampleVariance() {
+        this.sampleVariance = parseFloat(ss.sampleVariance(this.array).toFixed(this.max_decimals));
     };
     calculateStandardDeviation() {
-        this.standardDeviation = ss.standardDeviation(this.array);
+        this.standardDeviation = parseFloat(ss.standardDeviation(this.array).toFixed(this.max_decimals));
+    };
+    calculateSampleStandardDeviation() {
+        this.sampleStandardDeviation = parseFloat(ss.sampleStandardDeviation(this.array).toFixed(this.max_decimals));
     };
     calculateGeometricMean() {
-        this.geometricMean = ss.geometricMean(this.array);
+        if (this.array.some(function (el) {
+            return el < 0;
+        })) {
+            this.geometricMean = NaN;
+        }
+        else {
+            this.geometricMean = parseFloat(ss.geometricMean(this.array).toFixed(this.max_decimals));
+        }
     };
     calculateMedian() {
         this.median = ss.median(this.array);
@@ -63,6 +81,6 @@ export class Calculator {
         this.smallestValue = ss.min(this.array);
     }
     calculateSum() {
-        this.sum = ss.sum(this.array);
+        this.sum = parseFloat(ss.sum(this.array).toFixed(this.max_decimals));
     }
 };
