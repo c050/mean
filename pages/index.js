@@ -9,7 +9,9 @@ export default function Home() {
   let calculator = new Calculator();
   const [mean, setMean] = useState(0);
   const [variance, setVariance] = useState(0);
+  const [sampleVariance, setSampleVariance] = useState(0);
   const [standardDeviation, setStandardDeviation] = useState(0);
+  const [sampleStandardDeviation, setSampleStandardDeviation] = useState(0);
   const [geometricMean, setGeometricMean] = useState(0);
   const [median, setMedian] = useState(0);
   const [mode, setMode] = useState(0);
@@ -42,7 +44,10 @@ export default function Home() {
     calculator.sum = 0;
     calculator.calculateValues();
     setMean(calculator.mean);
+    setVariance(calculator.variance);
+    setSampleVariance(calculator.sampleVariance);
     setStandardDeviation(calculator.standardDeviation);
+    setSampleStandardDeviation(calculator.sampleStandardDeviation);
     setMedian(calculator.median);
     setMode(calculator.mode);
     setGeometricMean(calculator.geometricMean);
@@ -50,7 +55,6 @@ export default function Home() {
     setSmallestValue(calculator.smallestValue);
     setSum(calculator.sum)
     setRange(calculator.range);
-    setVariance(calculator.variance);
     setNumbers(calculator.array);
   };
   return (
@@ -77,6 +81,14 @@ export default function Home() {
           <div className={styles.card}>
             <p>Standard Deviation</p>
             <p>{standardDeviation}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Sample Variance</p>
+            <p>{sampleVariance}</p>
+          </div>
+          <div className={styles.card}>
+            <p>Sample Standard Deviation</p>
+            <p>{sampleStandardDeviation}</p>
           </div>
           <div className={styles.card}>
             <p>Geometric Mean</p>
