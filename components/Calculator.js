@@ -15,17 +15,25 @@ export class Calculator {
         this.sum = 0;
     };
     calculateValues() {
-        this.calculateMean();
-        this.calculateVariance();
-        this.calculateStandardDeviation();
-        this.calculateGeometricMean();
-        this.calculateMedian();
-        this.calculateMode();
-        this.calculateRange();
-        this.calculateLargestValue();
-        this.calculateSmallestValue();
-        this.calculateSum();
-        // this.array.sort((a, b) => a - b);
+        // Delete all NaN values from array
+        this.array = this.array.filter(function (el) {
+            return !isNaN(el);
+        });
+        if (this.array.length == 0) {
+            return;
+        }
+        else {
+            this.calculateMean();
+            this.calculateVariance();
+            this.calculateStandardDeviation();
+            this.calculateGeometricMean();
+            this.calculateMedian();
+            this.calculateMode();
+            this.calculateRange();
+            this.calculateLargestValue();
+            this.calculateSmallestValue();
+            this.calculateSum();
+        }
     };
     calculateMean() {
         this.mean = ss.mean(this.array);
@@ -46,7 +54,7 @@ export class Calculator {
         this.mode = ss.mode(this.array);
     }
     calculateRange() {
-        {}
+        this.range = ss.max(this.array) - ss.min(this.array);
     }
     calculateLargestValue() {
         this.largestValue = ss.max(this.array);
