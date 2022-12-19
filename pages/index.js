@@ -4,9 +4,21 @@ import Footer from '../components/Footer'
 import button_styles from '../styles/Buttons.module.css'
 import { useState } from 'react'
 import { Calculator } from '../components/Calculator'
+import { useEffect } from 'react'
 
 export default function Home() {
+
   let calculator = new Calculator();
+  calculator.mean = 0;
+  calculator.variance = 0;
+  calculator.standardDeviation = 0;
+  calculator.geometricMean = 0;
+  calculator.median = 0;
+  calculator.mode = 0;
+  calculator.range = 0;
+  calculator.largestValue = 0;
+  calculator.smallestValue = 0;
+  calculator.sum = 0;
   const [mean, setMean] = useState(0);
   const [variance, setVariance] = useState(0);
   const [sampleVariance, setSampleVariance] = useState(0);
@@ -29,19 +41,21 @@ export default function Home() {
     console.log(numberArray)
     calculator.array = numberArray;
   };
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter key was pressed. Run your function.");
+        event.preventDefault();
+        calculate();
+      }};
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+}, []);
   const calculate = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     getNumbers();
-    calculator.mean = 0;
-    calculator.variance = 0;
-    calculator.standardDeviation = 0;
-    calculator.geometricMean = 0;
-    calculator.median = 0;
-    calculator.mode = 0;
-    calculator.range = 0;
-    calculator.largestValue = 0;
-    calculator.smallestValue = 0;
-    calculator.sum = 0;
     calculator.calculateValues();
     setMean(calculator.mean);
     setVariance(calculator.variance);
@@ -62,16 +76,16 @@ export default function Home() {
       <Header/>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Mean Calculator
+          Statistics Calculator
         </h1>
         <input
           className={styles.numbers_input}
           id="numbers_input"
           type="text"
-          placeholder="Enter numbers separated by commas" />
+          placeholder="Enter numbers separated by commas"/>
         <div className={styles.results}>
           <div className={styles.card}>
-            <p>Mean</p>
+            <p>Mean / Average</p>
             <p>{mean}</p>
           </div>
           <div className={styles.card}>
@@ -119,7 +133,7 @@ export default function Home() {
             <p>{mode}</p>
           </div>
         </div>
-        <button className={button_styles.glow_on_hover} onClick={calculate}>Calculate</button>
+        <button className={button_styles.glow_on_hover} id="myBtn" onClick={calculate}>Calculate</button>
       </main>
       <Footer />
     </div>

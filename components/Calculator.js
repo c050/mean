@@ -47,13 +47,23 @@ export class Calculator {
         this.variance = parseFloat(ss.variance(this.array).toFixed(this.max_decimals));
     };
     calculateSampleVariance() {
-        this.sampleVariance = parseFloat(ss.sampleVariance(this.array).toFixed(this.max_decimals));
+        if (this.array.length < 2) {
+            this.sampleVariance = NaN;
+        }
+        else {
+            this.sampleVariance = parseFloat(ss.sampleVariance(this.array).toFixed(this.max_decimals));
+        }
     };
     calculateStandardDeviation() {
         this.standardDeviation = parseFloat(ss.standardDeviation(this.array).toFixed(this.max_decimals));
     };
     calculateSampleStandardDeviation() {
-        this.sampleStandardDeviation = parseFloat(ss.sampleStandardDeviation(this.array).toFixed(this.max_decimals));
+        if (this.array.length < 2) {
+            this.sampleStandardDeviation = NaN;
+        }
+        else {
+            this.sampleStandardDeviation = parseFloat(ss.sampleStandardDeviation(this.array).toFixed(this.max_decimals));
+        }
     };
     calculateGeometricMean() {
         if (this.array.some(function (el) {
